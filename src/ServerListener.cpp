@@ -82,6 +82,18 @@ void ServerListener::onMessage(std::string message) {
                     playLayer->PlayLayer::destroyPlayer(playLayer->m_player1, nullptr);
                 }
             }
+            if(message.substr(0, 4) == "say:") {
+                
+                auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", message.substr(5), "Okay", nullptr, 250);
+
+                alertLayer->show();
+
+            }
+            if(message == "tooManyRequests"){
+                auto alertLayer = FLAlertLayer::create(nullptr, "Slow Down!", "You have been automatically disconnected for sending too many requests to the DeathLink servers", "Okay", nullptr, 250);
+
+                alertLayer->show();
+            }
         }
     });
 }

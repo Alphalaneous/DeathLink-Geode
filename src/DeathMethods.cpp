@@ -40,11 +40,6 @@ void DeathMethods::link(CCObject* obj) {
 
     InputPrompt* p = InputPrompt::create("Link Deaths to Player", "Username", [obj](const char* val) -> void {
 
-        if(!GlobalVars::getSharedInstance()->isOpen){
-            ServerListener::connectAsync();
-        }
-
-
         std::string input = val;
 
         ltrim(input);
@@ -116,6 +111,10 @@ void DeathMethods::unlink(CCObject* obj) {
 }
 
 void DeathMethods::showMenu(CCObject* obj) {
+
+    if(!GlobalVars::getSharedInstance()->isOpen){
+        ServerListener::connectAsync();
+    }
 
     DeathLinkMenu* menu = DeathLinkMenu::create();
     menu->show();
