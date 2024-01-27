@@ -3,8 +3,8 @@
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 
-#include "DeathMethods.h"
 #include "ServerListener.h"
+#include "DeathLinkMenu.h"
 #include "GlobalVars.h"
 
 using namespace geode::prelude;
@@ -18,7 +18,7 @@ class $modify(MenuLayer) {
 		auto buttonSprite = CCSprite::createWithSpriteFrameName("gj_linkBtn_001.png");
 
 		auto button = CCMenuItemSpriteExtra::create(buttonSprite, this,
-			menu_selector(DeathMethods::showMenu));
+			menu_selector(DeathLinkMenu::onDeathlink));
 
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
 

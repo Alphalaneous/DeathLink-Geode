@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <string>
 #include <memory>
-#include "DeathMethods.h"
 #include "ServerListener.h"
 #include <Geode/Geode.hpp>
 #include <thread>
@@ -52,7 +51,7 @@ void ServerListener::connect(){
             ws->poll();
             ws->dispatch([wsp](const std::string& message) {
                 onMessage(message);
-                log::info("{}", message);
+                geode::log::info("{}", message);
 
                 });
         }
