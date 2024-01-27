@@ -71,14 +71,20 @@ void DeathLinkMenu::onLink(CCObject* sender) {
         alertLayer->show();
         return;
     }
-    if(lower == m_linkedTo) {
+    if(lower == m_linkedTo && lower != "") {
         auto alertLayer = FLAlertLayer::create(nullptr, "Oops", "You're already linked to this person :P", "Okay", nullptr, 250);
         alertLayer->show();
         return;
     }
+    
+    if(lower == "" || Utils::containsCharNotInList(lower) || lower.length() > 15){
+        const char* reason = "";
 
-    if (Utils::containsCharNotInList(lower)){
-        auto alertLayer = FLAlertLayer::create(nullptr, "Oops", "Those characters aren't allowed :(", "Okay", nullptr, 250);
+        if(lower == "") reason = "Blank Username";
+        if(Utils::containsCharNotInList(lower)) reason = "Contains Invalid Characters";
+        if(lower.length() > 15) reason = "Above Character Limit";
+        
+        auto alertLayer = FLAlertLayer::create(nullptr, "Oops", fmt::format("Invalid Username! (<cr>{}</c>)", reason), "Okay", nullptr, 350);
         alertLayer->show();
         return;
     }
@@ -110,7 +116,7 @@ void DeathLinkMenu::onUnlink(CCObject* obj) {
     GlobalVars::getSharedInstance()->linkedTo = "";
     m_linkedTo = "";
     
-
+    m_userInput->setString("");
     m_linkedArea->setString("linked to <cr>nobody</c>");
     m_linkedArea->setContentSize({164, m_linkedArea->getContentSize().height});
     
