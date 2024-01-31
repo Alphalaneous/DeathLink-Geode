@@ -46,7 +46,7 @@ void DeathLinkMenu::setup() {
         m_linkedArea->setString("Linked to <cr>nobody</c>");
     }
 
-    m_linkedArea->setContentSize({164, m_linkedArea->getContentSize().height});
+    m_linkedArea->setContentSize({184, m_linkedArea->getContentSize().height});
     m_linkedArea->setPosition({winSize.width/2, winSize.height/2 - 62});
     this->m_mainLayer->addChild(m_linkedArea);
 
@@ -80,11 +80,11 @@ void DeathLinkMenu::onLink(CCObject* sender) {
     if(lower == "" || Utils::containsCharNotInList(lower) || lower.length() > 15){
         const char* reason = "";
 
-        if(lower == "") reason = "Blank Username";
+        if(lower == "") reason = "Username is empty";
         if(Utils::containsCharNotInList(lower)) reason = "Contains Invalid Characters";
         if(lower.length() > 15) reason = "Above Character Limit";
         
-        auto alertLayer = FLAlertLayer::create(nullptr, "Oops", fmt::format("Invalid Username! (<cr>{}</c>)", reason), "Okay", nullptr, 350);
+        auto alertLayer = FLAlertLayer::create(nullptr, "Oops", fmt::format("Invalid Username!\n<cr>({})</c>", reason), "Okay", nullptr, 350);
         alertLayer->show();
         return;
     }
@@ -99,7 +99,7 @@ void DeathLinkMenu::onLink(CCObject* sender) {
         alertLayer->show();
 
         m_linkedArea->setString(fmt::format("Linked to <cg>{}</c>", input).c_str());
-        m_linkedArea->setContentSize({164, m_linkedArea->getContentSize().height});
+        m_linkedArea->setContentSize({184, m_linkedArea->getContentSize().height});
 
     }
     DeathLinkMenu::updateButtonStatus(GlobalVars::getSharedInstance()->linkedTo != "");
@@ -117,8 +117,8 @@ void DeathLinkMenu::onUnlink(CCObject* obj) {
     m_linkedTo = "";
     
     m_userInput->setString("");
-    m_linkedArea->setString("linked to <cr>nobody</c>");
-    m_linkedArea->setContentSize({164, m_linkedArea->getContentSize().height});
+    m_linkedArea->setString("Linked to <cr>nobody</c>");
+    m_linkedArea->setContentSize({184, m_linkedArea->getContentSize().height});
     
     DeathLinkMenu::updateButtonStatus(GlobalVars::getSharedInstance()->linkedTo != "");
 }
@@ -148,7 +148,7 @@ void DeathLinkMenu::updateButtonStatus(bool isLinked) {
 DeathLinkMenu* DeathLinkMenu::create() {
     auto pRet = new DeathLinkMenu();
     DeathLinkMenu::instance = pRet;
-    if (pRet && pRet->init(180, 140, "GJ_square01.png", "DeathLink")) {
+    if (pRet && pRet->init(200, 140, "GJ_square01.png", "DeathLink")) {
         pRet->autorelease();
         return pRet;
     }
