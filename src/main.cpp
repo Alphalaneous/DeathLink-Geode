@@ -20,12 +20,15 @@ class $modify(MenuLayer) {
 		auto button = CCMenuItemSpriteExtra::create(buttonSprite, this,
 			menu_selector(DeathLinkMenu::onDeathlink));
 
+		button->setID("deathlink-button"_spr);
+
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
 
 		button->setPosition({ 66, 92 });
 
 		auto menu = CCMenu::create();
 		menu->addChild(button);
+		menu->setID("deathlink-menu"_spr);
 
 		menu->setPosition({ 0,0 });
 
