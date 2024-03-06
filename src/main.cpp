@@ -99,7 +99,6 @@ class $modify(PlayerObject){
 			ServerListener::sendMessage(object.dump());	
 		}
 
-		GlobalVars::getSharedInstance()->hasDeathQueued = false;
 	}
 };
 

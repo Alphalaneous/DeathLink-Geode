@@ -100,8 +100,16 @@ void ServerListener::connect(){
             leaveLobbyDisconnected();
         }
         else{
-            auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The server has disconnected.", "Okay", nullptr, 250);
-            alertLayer->show();
+            PlayLayer* playLayer = PlayLayer::get();
+
+            if (playLayer) {
+                Notification* notification = Notification::create("The server has disconnected.", NotificationIcon::Error, 3);
+                notification->show();
+            }
+            else{
+                auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The server has disconnected.", "Okay", nullptr, 250);
+                alertLayer->show();
+            }
         }
     });
     ws.release();
@@ -150,8 +158,18 @@ void ServerListener::onMessage(std::string message) {
                         leaveLobbyDisconnected();
                     }
                     else{
-                        auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The host has disconnected.", "Okay", nullptr, 250);
-                        alertLayer->show();
+
+                        PlayLayer* playLayer = PlayLayer::get();
+
+                        if (playLayer) {
+                            Notification* notification = Notification::create("The host has disconnected.", NotificationIcon::Error, 3);
+                            notification->show();
+                        }
+                        else{
+                            auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The host has disconnected.", "Okay", nullptr, 250);
+                            alertLayer->show();
+                        }
+                        
                     }
                 }
 
@@ -163,8 +181,16 @@ void ServerListener::onMessage(std::string message) {
                         leaveLobbyDisconnected();
                     }
                     else{
-                        auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The host has kicked you.", "Okay", nullptr, 250);
-                        alertLayer->show();
+                        PlayLayer* playLayer = PlayLayer::get();
+
+                        if (playLayer) {
+                            Notification* notification = Notification::create("The host has kicked you.", NotificationIcon::Error, 3);
+                            notification->show();
+                        }
+                        else{
+                            auto alertLayer = FLAlertLayer::create(nullptr, "DeathLink", "The host has kicked you.", "Okay", nullptr, 250);
+                            alertLayer->show();
+                        }
                     }
                 }
 
@@ -207,6 +233,7 @@ void ServerListener::onMessage(std::string message) {
                 if (playLayer) {
                     GlobalVars::getSharedInstance()->hasDeathQueued = true;
                     playLayer->PlayLayer::destroyPlayer(playLayer->m_player1, nullptr);
+		            GlobalVars::getSharedInstance()->hasDeathQueued = false;
                 }
             }
         }
