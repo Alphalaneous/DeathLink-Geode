@@ -12,10 +12,14 @@ protected:
     static GlobalVars* instance;
 public:
 
-    bool isOpen;
-    bool disconnected = true;
-    std::string linkedTo = "";
-    bool needsToDie;
+    bool isOpen = false;
+    std::string lobbyID = "";
+    matjson::Array members;
+    bool showHostError = false;
+    bool showServerError = false;
+    bool showKickedError = false;
+    bool hasDeathQueued = false;
+    bool isHost = false;
 
     static GlobalVars* getSharedInstance(){
 
@@ -26,6 +30,5 @@ public:
     }
 
 };
-
 
 #endif

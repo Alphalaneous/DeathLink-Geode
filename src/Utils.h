@@ -20,7 +20,7 @@ namespace Utils {
 
     bool containsCharNotInList(std::string str){
 
-        std::string list = "0123456789abcdefghijklmnopqrstuvwxyz ";
+        std::string list = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
         for(auto elem : str){
 
