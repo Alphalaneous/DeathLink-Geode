@@ -67,6 +67,7 @@ void DeathLinkChoiceMenu::onJoin(CCObject* obj){
         matjson::Value object;
         object.set("status", "connect_to_lobby");
         object.set("lobby_id", upper);
+        this->onClose(nullptr);
 
         ServerListener::sendMessage(object.dump());
     }
@@ -75,6 +76,7 @@ void DeathLinkChoiceMenu::onJoin(CCObject* obj){
 void DeathLinkChoiceMenu::onCreate(CCObject* obj){
     matjson::Value object;
     object.set("status", "host_lobby");
+    this->onClose(nullptr);
 
     ServerListener::sendMessage(object.dump());
 }
