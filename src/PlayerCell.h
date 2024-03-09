@@ -28,6 +28,21 @@ public:
             memberName->setColor({100, 255, 100});
         }
 
+        std::string upperUsername;
+        std::string upperAccountUsername;
+
+        for(auto elem : username){
+            upperUsername += std::toupper(elem);
+        }
+
+        for(auto elem : std::string(GJAccountManager::sharedState()->m_username)){
+            upperAccountUsername += std::toupper(elem);
+        }
+
+        if(upperUsername == "XANII"){
+            memberName->setColor({160, 28, 255});
+        }
+
         CCMenuItemSpriteExtra* profileButton = CCMenuItemSpriteExtra::create(memberName, this, menu_selector(PlayerCell::showProfilePage));
         profileButton->setTag(accountID);
 
@@ -51,16 +66,7 @@ public:
         kickButton->setAnchorPoint({0.5, 0.5});
         kickButton->setPosition({250/scale - 20/scale, 15/scale});
 
-        std::string upperUsername;
-        std::string upperAccountUsername;
-
-        for(auto elem : username){
-            upperUsername += std::toupper(elem);
-        }
-
-        for(auto elem : std::string(GJAccountManager::sharedState()->m_username)){
-            upperAccountUsername += std::toupper(elem);
-        }
+        
 
         if(upperUsername != upperAccountUsername && GlobalVars::getSharedInstance()->isHost){
             buttonMenu->addChild(kickButton);
