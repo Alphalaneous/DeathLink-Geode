@@ -1,4 +1,4 @@
-#include "MyInputNode.hpp"
+#include "MyInputNode.h"
 
 
 CCTextInputNode* MyInputNode::getInputNode() {
