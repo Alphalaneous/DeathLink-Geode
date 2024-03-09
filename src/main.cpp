@@ -93,10 +93,13 @@ class $modify(PlayerObject){
 		PlayerObject::playerDestroyed(param_1);
 
 		if(!GlobalVars::getSharedInstance()->hasDeathQueued){
-			matjson::Value object;
-			object.set("status", "death");
 
-			ServerListener::sendMessage(object.dump());	
+			if(GlobalVars::getSharedInstance()->lobbyID != ""){
+				matjson::Value object;
+				object.set("status", "death");
+
+				ServerListener::sendMessage(object.dump());	
+			}
 		}
 
 	}
