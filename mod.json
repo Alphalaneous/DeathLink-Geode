@@ -9,7 +9,8 @@
 	"id": "alphalaneous.deathlink",
 	"name": "DeathLink",
 	"developer": "Alphalaneous",
-	"description": "Link your deaths with other players",
+	"description": "Link your deaths with another player",
+	"repository": "https://github.com/Alphalaneous/DeathLink-Geode",
 	"resources": {
         "sprites": [
 			"assets/*"
