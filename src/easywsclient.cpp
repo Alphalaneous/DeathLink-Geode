@@ -227,7 +227,7 @@ class _RealWebSocket : public easywsclient::WebSocket
             else {
                 rxbuf.resize(N + ret);
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         while (txbuf.size()) {
             int ret = ::send(sockfd, (char*)&txbuf[0], txbuf.size(), 0);
@@ -244,7 +244,7 @@ class _RealWebSocket : public easywsclient::WebSocket
             else {
                 txbuf.erase(txbuf.begin(), txbuf.begin() + ret);
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         if (!txbuf.size() && readyState == CLOSING) {
             closesocket(sockfd);
@@ -366,7 +366,7 @@ class _RealWebSocket : public easywsclient::WebSocket
             else { fprintf(stderr, "ERROR: Got unexpected WebSocket message.\n"); close(); }
 
             rxbuf.erase(rxbuf.begin(), rxbuf.begin() + ws.header_size+(size_t)ws.N);
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(250));
         }
     }
 
