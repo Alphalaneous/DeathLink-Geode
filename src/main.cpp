@@ -17,7 +17,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 		if (!MenuLayer::init()) return false;
 
 	
-		auto buttonSprite = CCSprite::createWithSpriteFrameName("gj_linkBtn_001.png");
+		auto buttonSprite = CircleButtonSprite::createWithSprite("link.png"_spr, 1, CircleBaseColor::Green, CircleBaseSize::MediumAlt);
 
 		auto button = CCMenuItemSpriteExtra::create(buttonSprite, this,
 			menu_selector(MyMenuLayer::showDeathLinkMenu));
@@ -25,16 +25,11 @@ class $modify(MyMenuLayer, MenuLayer) {
 		button->setID("deathlink-button"_spr);
 
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
-
-		button->setPosition({ 66, 92 });
-
-		auto menu = CCMenu::create();
-		menu->addChild(button);
-		menu->setID("deathlink-menu"_spr);
-
-		menu->setPosition({ 0,0 });
-
-		this->addChild(menu);
+		
+		if(auto menu = this->getChildByID("bottom-menu")){
+			menu->addChild(button);
+			menu->updateLayout();
+		}
 
 		this->scheduleUpdate();
 		this->scheduleOnce(schedule_selector(MyMenuLayer::delayChecks), 1);
