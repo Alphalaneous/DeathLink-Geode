@@ -1,15 +1,15 @@
 {
-	"geode": "2.0.0-beta.25",
+	"geode": "3.2.0",
 	"gd": {
-		"win": "2.204",
-		"android": "2.205",
-		"mac": "2.200"
+		"win": "2.206",
+		"android": "2.206",
+		"mac": "2.206"
 	},
-	"version": "v1.2.10",
+	"version": "v99999.99999.99999",
 	"id": "alphalaneous.deathlink",
 	"name": "DeathLink",
 	"developer": "Alphalaneous",
-	"description": "Link your deaths with another player",
+	"description": "Discontinued, owned by Globed now",
 	"repository": "https://github.com/Alphalaneous/DeathLink-Geode",
 	"resources": {
         "sprites": [
